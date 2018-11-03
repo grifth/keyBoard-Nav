@@ -7,26 +7,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        *{margin: 0;padding: 0;}
-        a{text-decoration: none;}
-        kbd{
-            border:1px solid red;
-            width: 2em;
-            height: 2em;
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        kbd {
+            width: 50px;
+            height: 40px;
             display: inline-block;
+            margin: 4px;
+            text-align: center;
+            color: #c5c5c5;
+            background: linear-gradient(to bottom, rgba(41, 41, 41, 1) 0%, rgba(17, 17, 17, 1) 100%);
+            border-radius: 7px;
+            box-shadow: 0 0 0 1px #1a181c, 0 0 0 2px #1f2020;
             text-transform: uppercase;
         }
-        .wrapper > div:nth-child(2){
+
+        .wrapper>div:nth-child(2) {
             margin-left: 1em;
         }
 
-        .wrapper > div:nth-child(3){
+        .wrapper>div:nth-child(3) {
             margin-left: 2em;
         }
-        main{
+
+        main {
             text-align: center;
         }
     </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -63,12 +78,12 @@
     index = 0
     while (index < keys.length) {
         y = document.createElement('div')
-        
+
         row = keys[index]
         console.log(row.length);
-        
+
         index2 = 0
-        
+
         while (index2 < row.length) {
             k = document.createElement('kbd')
             k.textContent = row[index2]
@@ -81,10 +96,10 @@
         index = index + 1
     }
 
-    document.onkeypress = function(event){
+    document.onkeypress = function (event) {
         key = event['key']
         website = hash[key]
-        window.open(`http://${website}`,'_blank')
+        window.open(`http://${website}`, '_blank')
     }
 </script>
 
