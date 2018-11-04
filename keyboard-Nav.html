@@ -27,6 +27,18 @@
             border-radius: 7px;
             box-shadow: 0 0 0 1px #1a181c, 0 0 0 2px #1f2020;
             text-transform: uppercase;
+            position: relative;
+        }
+        
+        kbd>button{
+            position: absolute;
+            display: none;
+            right: 0;
+            bottom: 0;
+        }
+
+        kbd:hover>button{
+            display: inline-block;
         }
 
         .wrapper>div:nth-child(2) {
@@ -40,6 +52,8 @@
         main {
             text-align: center;
         }
+
+        
     </style>
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -80,13 +94,15 @@
         y = document.createElement('div')
 
         row = keys[index]
-        console.log(row.length);
 
         index2 = 0
 
         while (index2 < row.length) {
             k = document.createElement('kbd')
             k.textContent = row[index2]
+            btn = document.createElement('button')
+            btn.textContent = 'E'
+            k.appendChild(btn)
             y.appendChild(k)
             index2++
         }
