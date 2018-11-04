@@ -88,6 +88,12 @@
         'm': 'www.mcdonalds.com.cn'
     }
 
+    var hashStorage = JSON.parse(localStorage.getItem('web')||'null')
+
+    if(hashStorage){
+        hash = hashStorage
+    }
+
     div1 = document.createElement('div')
     index = 0
     while (index < keys.length) {
@@ -102,6 +108,17 @@
             k.textContent = row[index2]
             btn = document.createElement('button')
             btn.textContent = 'E'
+            btn.id = row[index2]
+            btn.onclick=function(event){
+
+                var key = event['target']['id']
+
+                var web = prompt('给个地址')
+                
+                hash[key] = web
+                
+                localStorage.setItem('web',JSON.stringify(hash))
+            }
             k.appendChild(btn)
             y.appendChild(k)
             index2++
