@@ -12,6 +12,17 @@
             padding: 0;
         }
 
+        main {
+            background: url('./bg.jpg') no-repeat center center;
+            margin: 0 auto;
+            display: flex;
+            height: 100vh;
+            /* display: inline-block; */
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
         a {
             text-decoration: none;
         }
@@ -20,24 +31,26 @@
             width: 50px;
             height: 40px;
             display: inline-block;
-            margin: 4px;
+            margin: 13px;
             text-align: center;
             color: #c5c5c5;
             background: linear-gradient(to bottom, rgba(41, 41, 41, 1) 0%, rgba(17, 17, 17, 1) 100%);
             border-radius: 7px;
             box-shadow: 0 0 0 1px #1a181c, 0 0 0 2px #1f2020;
             text-transform: uppercase;
+            font-style: 20px;
+            font-family: Helvetica;
             position: relative;
         }
-        
-        kbd>button{
+
+        kbd>button {
             position: absolute;
             display: none;
             right: 0;
             bottom: 0;
         }
 
-        kbd:hover>button{
+        kbd:hover>button {
             display: inline-block;
         }
 
@@ -46,14 +59,25 @@
         }
 
         .wrapper>div:nth-child(3) {
-            margin-left: 2em;
+            margin-left: -2em;
+        }
+        .wrapper{
+            background:rgba(0,0,0,0.5);
+            border-radius: 8px;
+        }
+        kbd img {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
         }
 
-        main {
-            text-align: center;
+        kbd span{
+            position: absolute;
+            top: 4px;
+            left: 2px;
         }
-
-        
     </style>
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -88,9 +112,9 @@
         'm': 'www.mcdonalds.com.cn'
     }
 
-    var hashStorage = JSON.parse(localStorage.getItem('web')||'null')
+    var hashStorage = JSON.parse(localStorage.getItem('web') || 'null')
 
-    if(hashStorage){
+    if (hashStorage) {
         hash = hashStorage
     }
 
@@ -105,20 +129,26 @@
 
         while (index2 < row.length) {
             k = document.createElement('kbd')
-            k.textContent = row[index2]
+            s = document.createElement('span')
+            s.textContent = row[index2]
             btn = document.createElement('button')
             btn.textContent = 'E'
             btn.id = row[index2]
-            btn.onclick=function(event){
+            img = document.createElement('img')
+            img.src=`http://www.${hash[row[index2]]}/favicon.ico`
+            
+            btn.onclick = function (event) {
 
                 var key = event['target']['id']
 
                 var web = prompt('给个地址')
-                
+
                 hash[key] = web
-                
-                localStorage.setItem('web',JSON.stringify(hash))
+
+                localStorage.setItem('web', JSON.stringify(hash))
             }
+            k.appendChild(s)
+            k.appendChild(img)
             k.appendChild(btn)
             y.appendChild(k)
             index2++
@@ -132,7 +162,7 @@
     document.onkeypress = function (event) {
         key = event['key']
         website = hash[key]
-        window.open(`http://${website}`, '_blank')
+        window.open(`http://www.${website}`, '_blank')
     }
 </script>
 
